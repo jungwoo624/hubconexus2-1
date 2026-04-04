@@ -1,21 +1,84 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World - HubConexus</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Future-Sim | AI 알고리즘 윤리 시뮬레이터</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    
+    <!-- External JS -->
+    <script src="main.js" defer></script>
 </head>
 <body>
-  <div class="theme-container">
-    <button id="theme-toggle">Switch to Dark Mode</button>
-  </div>
-  
-  <div class="content">
-    <h1>Hello, world!</h1>
-    <button id="original-btn" onclick="console.log('hello');">Press me</button>
-  </div>
-  
-  <script defer type="text/javascript" src="/main.js"></script>
+
+<header>
+    <h1>FUTURE-SIM LAB <small>v2.0 Global Ethics Monitor</small></h1>
+    <div id="date">2026.04.03 | Global Scale</div>
+</header>
+
+<div class="container">
+    <aside class="panel">
+        <h2>Algorithm Config</h2>
+        <p class="scenario-desc">시나리오: 국가 보조금 배분 알고리즘 설계</p>
+        
+        <div class="control-group">
+            <label>성과 중심 가중치 (Efficiency) <span id="val1">50%</span></label>
+            <input type="range" id="effWeight" class="slider" min="0" max="100" value="50">
+        </div>
+
+        <div class="control-group">
+            <label>필요(복지) 중심 가중치 (Equity) <span id="val2">50%</span></label>
+            <input type="range" id="eqWeight" class="slider" min="0" max="100" value="50">
+        </div>
+
+        <div class="control-group">
+            <label>다양성/소수자 보호 (Diversity) <span id="val3">30%</span></label>
+            <input type="range" id="divWeight" class="slider" min="0" max="100" value="30">
+        </div>
+
+        <button class="btn-run" onclick="runSimulation()">알고리즘 배포 및 분석 실행</button>
+
+        <div class="ai-feedback">
+            <div class="ai-avatar">AIHP</div>
+            <div class="ai-msg" id="aiMsg">
+                <strong>[AIHP 대기중]</strong> 반갑습니다! 저는 유네스코 AI 윤리 감사관 <strong>AIHP</strong>입니다. 좌측의 슬라이더를 조절하여 당신만의 사회 정책 알고리즘을 만들어보세요.
+            </div>
+        </div>
+    </aside>
+
+    <main class="dashboard">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span>사회적 행복도</span>
+                <h3 id="happyScore" style="color: var(--text-muted);">--</h3>
+            </div>
+            <div class="stat-card">
+                <span>불평등 지수 (Gini)</span>
+                <h3 id="giniScore" style="color: var(--text-muted);">--</h3>
+            </div>
+            <div class="stat-card">
+                <span>사회 갈등 위험</span>
+                <h3 id="conflictScore" style="color: var(--text-muted);">--</h3>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="impactChart"></canvas>
+        </div>
+        
+        <p class="footer-note">* 본 시뮬레이션은 2026 AX 사회안전망 표준 데이터를 기반으로 연산됩니다.</p>
+    </main>
+</div>
+
 </body>
 </html>
